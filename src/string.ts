@@ -145,3 +145,20 @@ export function unindent(str: TemplateStringsArray | string) {
     .map(line => line.slice(commonIndent))
     .join('\n')
 }
+
+/**
+ * Convert text to url-safe-slug (removal-aggressive)
+ * @category string
+ * @example
+ * ```js
+ * slugify('アンソニ・Anthony Fu - Hello!') // 'anthony-fu-hello'
+ * ```
+ */
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFD') // split accented chars
+    .replace(/[\u0300-\u036F]/g, '') // remove accents
+    .replace(/[^a-z0-9]+/g, '-') // replace non-alphanumerics with -
+    .replace(/^-+|-+$/g, '') // trim leading/trailing -
+}
