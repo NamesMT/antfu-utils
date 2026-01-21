@@ -219,3 +219,17 @@ export function filterInPlace<T>(array: T[], predicate: (item: T, index: number,
   }
   return array
 }
+
+/**
+ * Create a new chunked array from input array.
+ * 
+ * @category Array
+ * @example const chunked = chunk([1, 2, 3, 4], 2) // [[1,2],[3,4]]
+ */
+export function chunk<E>(array: E[], chunkSize: number): E[][] {
+  const result: E[][] = []
+  for (let i = 0; i < array.length; i += chunkSize) {
+    result.push(array.slice(i, i + chunkSize))
+  }
+  return result
+}
